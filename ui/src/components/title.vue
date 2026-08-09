@@ -11,8 +11,8 @@
 
 <style scoped>
 h1 {
-    font-family: 'Georgia';
-    font-size: 50px;
+    font-family: 'Poppins';
+    font-size: 48px;
     color: rgb(63, 24, 11);
     font-weight: bold;
     text-align: left;

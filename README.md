@@ -1,4 +1,4 @@
-AI tools for debugging/ideation, pathway illustration etc
+AI tools for debugging/ideation, pathway illustration, guidance, strategies etc. Used as a helpful knowledgeable assistant to help with a full-scale RAG project of this size. 
 
 Arxiv docs
 OpenAlex/CORE/PubMed/Europe PMC etc docs
@@ -11,6 +11,7 @@ Requests docs
 HuggingFace docs
 Pinecone docs
 Vue.js docs
+Various pages on W3 schools and GeeksForGeeks - Vue and CSS
 
 - Papers/documents from various online sources including government/research organisations
 
@@ -40,3 +41,23 @@ Vue.js docs
 
 
 - https://www.youtube.com/watch?v=zwvUAh91itA - Vue 
+
+
+- https://medium.com/@myscale/advanced-rag-optimization-smarter-queries-superior-insights-d020a66a8fac - Query optimization stratgies
+
+
+- https://shweta-lodha.medium.com/using-pinecone-with-openai-and-llamaindex-a-complete-solution-c596d0963e3d - basic strategies
+
+
+- https://medium.com/@visrow/rag-pipeline-best-practices-10-critical-engineering-decisions-for-production-systems-937a6f8d141c - RAG optimization strategies
+
+
+- https://medium.com/hackernoon/front-end-refactored-components-with-vue-907a08a3630 - Vue components
+
+
+- https://www.reddit.com/r/vuejs/comments/1eg27rm/how_to_change_background_color_for_the_whole/ - Vue styling
+
+
+- https://stackoverflow.com/questions/69287834/search-bar-vue-js - Search bar in Vue
+
+
