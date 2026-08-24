@@ -1,4 +1,25 @@
-AI tools for debugging/ideation, pathway illustration, guidance, strategies etc. Used as a helpful knowledgeable assistant to help with a full-scale RAG project of this size. 
+# RAG Powered Species Conservation Research Tool 
+
+This system aims to provide researchers with the ability to develop a preliminary understanding of species conservation techniques using a RAG pipeline backed by a corpus of 100+ research articles and agency/government department brochures on species research conservation. 
+
+## Current Tech Stack (In Progress)
+
+- LlamaCloud + LlamaIndex RAG pipeline (including Groq and HuggingFace local and API integrations)
+- Vue.js frontend
+- Pickle used for nodes/embeddings/document saving
+- GPU utilisation on Colab and LightningAI during semantic chunking and embedding
+- Pinecone vector DB integration
+- Arxiv data extraction
+- Model quantization through Transfomers
+
+
+*AI tools were also used for debugging/ideation, pathway illustration, guidance, strategies etc. This was especially helpful as a knowledgeable assistant to help with a full-scale RAG project of this size, integral in filling gaps in technical understanding.*
+
+
+
+
+
+## Sources (non exhaustive)
 
 Arxiv docs
 OpenAlex/CORE/PubMed/Europe PMC etc docs
