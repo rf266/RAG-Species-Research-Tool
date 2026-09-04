@@ -82,3 +82,26 @@ Various pages on W3 schools and GeeksForGeeks - Vue and CSS
 - https://stackoverflow.com/questions/69287834/search-bar-vue-js - Search bar in Vue
 
 
+- https://www.geeksforgeeks.org/python/introduction-to-fastapi/ - Fastapi
+
+
+- https://medium.com/@abheshith7/mastering-reranking-in-rag-from-basic-retrieval-to-advanced-methods-db297530361a  - Reranking
+
+
+- https://medium.com/@visrow/rag-pipeline-best-practices-10-critical-engineering-decisions-for-production-systems-937a6f8d141c - RAG strategies
+
+
+ - https://kajetan.io/articles/search-bar-vue -navigation Vue
+
+
+ - https://www.youtube.com/watch?v=LW-cQN0_1R4&t=52s - 
+
+
+ - https://stackoverflow.com/questions/77444025/how-can-i-manage-vue-routes-inside-fastapi
+
+
+ https://www.youtube.com/watch?v=7UKOCrUjAY8
+
+
+
+ https://www.youtube.com/watch?v=YLFOynY72sE
