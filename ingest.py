@@ -22,5 +22,5 @@ print(documents[0].text[:100])
 
 import pickle
 
-with open("mds ", 'wb') as f: #changed to .pkl later
+with open("mds", 'wb') as f: #changed to .pkl later
     pickle.dump(documents, f)
