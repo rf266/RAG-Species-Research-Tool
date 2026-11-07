@@ -5,6 +5,8 @@ from llama_index.core import Settings
 from llama_index.llms.groq import Groq
 from dotenv import load_dotenv
 import os 
+from llama_index.sparse_embeddings.fastembed import FastEmbedSparseEmbedding
+
 from pinecone.grpc import PineconeGRPC
 from llama_index.vector_stores.pinecone import PineconeVectorStore
 load_dotenv()
@@ -18,6 +20,7 @@ from llama_index.core.vector_stores import MetadataFilters, ExactMatchFilter
 def pipeline():
     api = os.getenv("PINECONE_API_KEY")
     pine = PineconeGRPC(api_key=api)
+    sparse_model = FastEmbedSparseEmbedding(model_name="prithivida/Splade_PP_en_v1")
 
     index = pine.Index("embeddings2")
     vectorstore = PineconeVectorStore(pinecone_index=index,add_sparse_vector=True,sparse_embedding_model=sparse_model)
@@ -29,7 +32,6 @@ def pipeline():
 
     filter = MetadataFilters( filters=[ExactMatchFilter(key="classification", value="paper_body")]
 )
-
     embed_model = HuggingFaceInferenceAPIEmbedding(
     model_name="BAAI/bge-m3",
     token=os.getenv("HF_API_KEY"))
