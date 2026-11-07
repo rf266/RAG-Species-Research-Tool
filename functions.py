@@ -12,22 +12,37 @@ from llama_index.embeddings.huggingface_api import HuggingFaceInferenceAPIEmbedd
 import nest_asyncio
 nest_asyncio.apply()
 from llama_index.core import VectorStoreIndex
+from llama_index.core.postprocessor import SentenceTransformerRerank
+from llama_index.core.vector_stores import MetadataFilters, ExactMatchFilter
 
 def pipeline():
     api = os.getenv("PINECONE_API_KEY")
     pine = PineconeGRPC(api_key=api)
-    index = pine.Index("embeddings")
-    vectorstore = PineconeVectorStore(pinecone_index=index)
+
+    index = pine.Index("embeddings2")
+    vectorstore = PineconeVectorStore(pinecone_index=index,add_sparse_vector=True,sparse_embedding_model=sparse_model)
+
+
     api = os.getenv("GROQ_API_KEY")
     llm = Groq(model="openai/gpt-oss-120b", api=api)   
     Settings.llm = llm 
+
+    filter = MetadataFilters( filters=[ExactMatchFilter(key="classification", value="paper_body")]
+)
+
     embed_model = HuggingFaceInferenceAPIEmbedding(
     model_name="BAAI/bge-m3",
     token=os.getenv("HF_API_KEY"))
+
     Settings.embed_model=embed_model
     vectorindex = VectorStoreIndex.from_vector_store(vector_store=vectorstore, llm=llm)
-    retriver = VectorIndexRetriever(index=vectorindex,verbose=True, top_k=20)
+
+
+    filter = MetadataFilters(filters=[ExactMatchFilter(key="classification", value="paper_body")])
+
+    retriver = VectorIndexRetriever( index=vectorindex,verbose=True,similarity_top_k=20,vector_store_query_mode="hybrid",filters=filter)
     synth = get_response_synthesizer()
+ 
     from llama_index.core.postprocessor import SentenceTransformerRerank
 
     rerank = SentenceTransformerRerank(model="cross-encoder/ms-marco-MiniLM-L4-v2", top_n=7)
@@ -44,6 +59,9 @@ def pipeline():
     nodes = response.source_nodes
 
     print([node.score for node in nodes])
+
+
+    
     print([node.text for node in nodes])
     print(response)
     return response
