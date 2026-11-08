@@ -16,7 +16,7 @@ nest_asyncio.apply()
 from llama_index.core import VectorStoreIndex
 from llama_index.core.postprocessor import SentenceTransformerRerank
 from llama_index.core.vector_stores import MetadataFilters, ExactMatchFilter
-
+from llama_index.embeddings.cloudflare_workersai import CloudflareEmbedding
 def pipeline():
     api = os.getenv("PINECONE_API_KEY")
     pine = PineconeGRPC(api_key=api)
@@ -30,11 +30,14 @@ def pipeline():
     llm = Groq(model="openai/gpt-oss-120b", api=api)   
     Settings.llm = llm 
 
-    filter = MetadataFilters( filters=[ExactMatchFilter(key="classification", value="paper_body")]
-)
-    embed_model = HuggingFaceInferenceAPIEmbedding(
-    model_name="BAAI/bge-m3",
-    token=os.getenv("HF_API_KEY"))
+    filter = MetadataFilters( filters=[ExactMatchFilter(key="classification", value="paper_body")])
+ 
+
+    embed_model = CloudflareEmbedding(
+        account_id = os.getenv("CF_ACCOUNT_ID"), 
+        auth_token = os.getenv("CF_API_KEY"),
+        model="@cf/baai/bge-m3",
+    )
 
     Settings.embed_model=embed_model
     vectorindex = VectorStoreIndex.from_vector_store(vector_store=vectorstore, llm=llm)
@@ -58,6 +61,8 @@ def pipeline():
 
     query_engine = RetrieverQueryEngine(retriever=retriver, response_synthesizer=synth, node_postprocessors=[rerank])
     response = query_engine.query(new_prompt)
+
+
     nodes = response.source_nodes
 
     print([node.score for node in nodes])
