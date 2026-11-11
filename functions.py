@@ -17,7 +17,10 @@ from llama_index.core import VectorStoreIndex
 from llama_index.core.postprocessor import SentenceTransformerRerank
 from llama_index.core.vector_stores import MetadataFilters, ExactMatchFilter
 from llama_index.embeddings.cloudflare_workersai import CloudflareEmbedding
-def pipeline():
+
+
+
+def pipeline(query:str):
     api = os.getenv("PINECONE_API_KEY")
     pine = PineconeGRPC(api_key=api)
     sparse_model = FastEmbedSparseEmbedding(model_name="prithivida/Splade_PP_en_v1")
@@ -52,7 +55,6 @@ def pipeline():
 
     rerank = SentenceTransformerRerank(model="cross-encoder/ms-marco-MiniLM-L4-v2", top_n=7)
 
-    query = input("Enter your query: ")
 
     prompt_instructions = f'You are a part of a conservation research RAG assistant - improve the prompt for the LLM to yield better results. The user has entered the prompt below:\n {query} \n The prompt could have limitations such as being too specific where the corpus may not have information on the exact species or too generalised for a corpus detailing technical insights into species conservation. It may also not provide constraints and rules to the LLM \n Your job is to enhance the query so that RAG retrieval returns interesting points of discussion. Ensure you mention that all information must be backed by citations sourced only from the actual RAG vector database, tell it to recognise levels of uncertainty of information due to the corpus and a breakdown of information reasoning which does not go beyond species conservation. \n in Ensure the new prompt is between 50-60 words max. \nOnly return the prompt text.'
 
@@ -74,5 +76,6 @@ def pipeline():
     return response
 
 
-pipeline()
+if __name__ == "__main__":
+    return __name__
 

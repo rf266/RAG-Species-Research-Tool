@@ -7,7 +7,7 @@ This system aims to provide researchers with the ability to develop a preliminar
 - LlamaCloud + LlamaIndex RAG pipeline (including Groq and HuggingFace local and API integrations)
 - Vue.js frontend
 - Pickle used for nodes/embeddings/document saving
-- GPU utilisation on Colab and LightningAI during semantic chunking and embedding
+- GPU utilisation on Colab and LightningAI during semantic chunking and embedding + Kaggle
 - Pinecone vector DB integration
 - Arxiv data extraction
 - Model quantization through Transfomers
@@ -15,6 +15,16 @@ This system aims to provide researchers with the ability to develop a preliminar
 
 *AI tools were also used for debugging/ideation, pathway illustration, guidance, strategies etc. This was especially helpful as a knowledgeable assistant to help with a full-scale RAG project of this size, integral in filling gaps in technical understanding.*
 
+
+## Data Sourcing 
+Research papers were found from online, with regards to research on species extinction. Arxiv was used as a primary resource due to its ability to allow mass paper download, proving convenient in creating a knowledge base. Other platforms were attempted such as OpenAlex, CORE, PubMed and Europe PMC, however, it was not feasible to mass-download these papers at once, considering the large scale required. Arxiv mainly focuses on technical exploration, hence the nature of its downloaded papers are based on the technological aspect of species extinction research and prevention, which caused me to pivot the true nature of the RAG pipeline to allow researchers to look into technical strategies they may use. Additionally, individual papers/brochures/documents were researched into on the internet, with many of these added to the corpus. In total, around 150-160+ papers were downloaded. 
+
+## Data Preprocessing
+- The data was ingested using LlamaParse for further processing. 
+- For the final version, Kaggle was used for its GPU. In previous iterations, Colab and LightningAI were also used. 
+
+## Problem Faced 
+- One problem faced was the RAG pipeline returning chunks, which, apon inspection, were taken from the documents' reference/bibliography page. Due to the titles of the works in the bibliography, the model understood these as to be part of answering the query, due to the cosine similarity between the query and the words in the references. This provided false context for answers, which were based on the model's interpretation and knowledge rather than solely what the corpus says. After research/AI, I found that rechunking the entire corpus was the best action, where the chunks would be classified as either reference/bibliography or paper_body. I also took this opportunity to employ hybrid embeddings, which would be useful as in a scientific context, both semantic meaning and specific keywords are essential in correctly formulating an answer. 
 
 
 
@@ -94,14 +104,13 @@ Various pages on W3 schools and GeeksForGeeks - Vue and CSS
  - https://kajetan.io/articles/search-bar-vue -navigation Vue
 
 
- - https://www.youtube.com/watch?v=LW-cQN0_1R4&t=52s - 
+ - https://www.youtube.com/watch?v=LW-cQN0_1R4&t=52s 
 
 
  - https://stackoverflow.com/questions/77444025/how-can-i-manage-vue-routes-inside-fastapi
 
 
- https://www.youtube.com/watch?v=7UKOCrUjAY8
+-  https://www.youtube.com/watch?v=7UKOCrUjAY8
 
 
-
- https://www.youtube.com/watch?v=YLFOynY72sE
+- https://www.youtube.com/watch?v=YLFOynY72sE

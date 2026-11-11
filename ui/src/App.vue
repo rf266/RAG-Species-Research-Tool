@@ -8,6 +8,7 @@ import result from './components/result.vue'
 const isClicked = ref(false)
 const searchText = ref('')
 const result = ref('')
+
 function submit() {
 
   text = fetch('http://127.0.0.1:8000/submit', {
